@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local Fake Detector</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    textarea {
+      width: 100%;
+      height: 180px;
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+    button {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-right: 10px;
+      font-size: 14px;
+    }
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+    }
+    .btn-secondary {
+      background: #e5e5e5;
+    }
+    .result-circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #fca5a5, #fde68a);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-weight: bold;
+    }
+    .reasons, .highlights {
+      background: #fafafa;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #eee;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Local Fake Detector (Clientseitig)</h1>
+    <p>Nice :)</p>
+
+    <textarea id="inputText" placeholder="Text oder Zeitungsartikel hier einfügen..."></textarea>
+
+    <div style="margin-top: 15px;">
+      <button class="btn-primary" onclick="analyze()">Analysieren</button>
+      <button class="btn-secondary" onclick="resetAll()">Zurücksetzen</button>
+    </div>
+
+    <div id="resultArea" style="margin-top: 25px; display:none;">
+      <div style="display: flex; gap: 20px; align-items: center;">
+        <div class="result-circle">
+          <div id="scoreValue" style="font-size:28px;">0%</div>
+          <div style="font-size:12px;">Fake-Wahrscheinlichkeit</div>
+        </div>
+        <div>
+          <div id="scoreLabel" style="font-size:18px; font-weight:600;"></div>
+          <div id="confidenceLabel" style="font-size:13px; color:#555;"></div>
+        </div>
+      </div>
+
+      <h3>Wichtigste Hinweise:</h3>
+      <div id="reasons" class="reasons"></div>
+
+      <h3>Hervorgehobene Stellen:</h3>
+      <div id="highlights" class="highlights"></div>
+
+      <h3>Alle Signale:</h3>
+      <div id="fullReasons" class="reasons"></div>
+    </div>
+  </div>
+
+<script>
+// ---- Heuristiklisten ----
+const SENSATIONAL_WORDS = ["schockierend","unglaublich","sensationell","skandal","dramatisch","alarmierend","explosiv","unfassbar","breaking"];
+const HOAX_WORDS = ["Gerücht","Hoax","Falschmeldung","Fake","Satire","Parodie"];
+const CLICKBAIT = [/du wirst nicht glauben/i, /\d+\s+(tipps|gründe|wege)/i];
+const QUOTE_MARKERS = [/laut/i, /berichtet/i, /quelle/i];
+const OPINIONS = [/ich glaube/i, /meiner meinung/i];
+const TRUST_DOMAINS = ["tagesschau.de","spiegel.de","apnews.com","reuters.com"];
+
+function analyze(){
+  const text = document.getElementById("inputText").value;
+  if(!text.trim()) return;
+
+  const result = analyzeText(text);
+  renderResult(result);
+}
+
+function resetAll(){
+  document.getElementById("inputText").value = "";
+  document.getElementById("resultArea").style.display = "none";
+}
+
+function analyzeText(text){
+  const reasons = [];
+  const words = text.split(/\s+/);
+  const wc = words.length;
+
+  // Sensational words
+  const sens = SENSATIONAL_WORDS.filter(w => text.toLowerCase().includes(w.toLowerCase()));
+  if(sens.length) reasons.push({title:"Sensationssprache", detail:sens.join(", "), weight:20});
+
+  // ALL CAPS
+  const caps = words.filter(w => w === w.toUpperCase() && w.length > 2);
+  if(caps.length / wc > 0.05) reasons.push({title:"Viele Großbuchstaben", detail:`${caps.length} Wörter`, weight:10});
+
+  // Exclamation marks
+  const excl = (text.match(/!{2,}/g) || []).length;
+  if(excl) reasons.push({title:"Viele !!", detail:`${excl}x`, weight:6});
+
+  // No links
+  const links = text.match(/https?:\/\//g) || [];
+  if(links.length === 0 && wc > 60) reasons.push({title:"Keine Quellen", detail:"Keine Links", weight:10});
+  else if(links.length > 0) reasons.push({title:"Links gefunden", detail:`${links.length} Link(s)`, weight:-6});
+
+  // Clickbait
+  if(CLICKBAIT.some(r=>r.test(text))) reasons.push({title:"Clickbait-Muster", detail:"Listen/Übertreibungen", weight:8});
+
+  // Hoax words
+  const hoax = HOAX_WORDS.filter(w=>text.includes(w));
+  if(hoax.length) reasons.push({title:"Hoax-Wörter", detail:hoax.join(", "), weight:12});
+
+  // Opinion
+  if(OPINIONS.some(r=>r.test(text))) reasons.push({title:"Meinungsformulierung", detail:"Persönliche Ansicht", weight:6});
+
+  // Quote markers (positive)
+  if(QUOTE_MARKERS.some(r=>r.test(text))) reasons.push({title:"Journalistische Marker", detail:"z.B. 'laut'", weight:-5});
+
+  // Trust domains (positive)
+  if(TRUST_DOMAINS.some(d=>text.includes(d))) reasons.push({title:"Seriöse Quelle", detail:"Bekannte Domain", weight:-12});
+
+  // Score
+  let score = 40 + reasons.reduce((a,b)=>a+b.weight,0);
+  score = Math.max(0, Math.min(100, score));
+
+  const confidence = Math.min(95, 30 + reasons.length * 7);
+
+  const highlights = sens.concat(hoax).slice(0,10).map(t=>{
+    const pos = text.toLowerCase().indexOf(t.toLowerCase());
+    if(pos < 0) return null;
+    return {
+      term: t,
+      snippet: text.substring(Math.max(0,pos-30), pos+30)
+    };
+  }).filter(v=>v);
+
+  return {
+    score,
+    confidence,
+    label: labelScore(score),
+    reasons,
+    highlights
+  };
+}
+
+function labelScore(s){
+  if(s>=85) return "Sehr wahrscheinlich falsch";
+  if(s>=65) return "Wahrscheinlich falsch";
+  if(s>=45) return "Unsicher";
+  if(s>=25) return "Wahrscheinlich glaubwürdig";
+  return "Sehr glaubwürdig";
+}
+
+function renderResult(r){
+  document.getElementById("resultArea").style.display = "block";
+  document.getElementById("scoreValue").textContent = r.score + "%";
+  document.getElementById("scoreLabel").textContent = r.label;
+  document.getElementById("confidenceLabel").textContent = "Vertrauenslevel: " + r.confidence + "%";
+
+  // top reasons
+  const reasonsBox = document.getElementById("reasons");
+  reasonsBox.innerHTML = r.reasons.slice(0,5).map(x=>`<div><b>${x.title}</b>: ${x.detail} (${x.weight})</div>`).join("");
+
+  // highlights
+  const high = document.getElementById("highlights");
+  high.innerHTML = r.highlights.length
+    ? r.highlights.map(h=>`<div><b>${h.term}</b>: ...${h.snippet}...</div>`).join("")
+    : "Keine markanten Stellen gefunden.";
+
+  // full list
+  const full = document.getElementById("fullReasons");
+  full.innerHTML = r.reasons.map(x=>`<div><b>${x.title}</b>: ${x.detail} <span style='color:#777'>(Gewicht ${x.weight})</span></div>`).join("");
+}
+</script>
+</body>
+</html>
