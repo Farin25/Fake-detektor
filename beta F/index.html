@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>FakeDetector – Fake News Checker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="logo">🕵️‍♂️ FakeDetector</div>
+      <div class="subtitle">Clientseitiger Fake-News-Check (nur Heuristik)</div>
+    </header>
+
+    <main class="app-main">
+      <section class="input-panel card">
+        <h2>1. Artikel eingeben oder Screenshot hochladen</h2>
+
+        <div class="input-grid">
+          <div class="text-input-area">
+            <label for="articleText" class="field-label">
+              Text des Artikels / Posts
+            </label>
+            <textarea
+              id="articleText"
+              placeholder="Füge hier den Text eines Artikels, Social-Media-Posts oder einer Überschrift ein..."
+            ></textarea>
+
+            <div class="helper-text">
+              Tipp: Je mehr Text du einfügst (Überschrift + ein paar Absätze), desto besser kann die Heuristik arbeiten.
+            </div>
+          </div>
+
+          <div class="image-input-area">
+            <label for="imageUpload" class="field-label">
+              Optional: Screenshot hochladen
+            </label>
+            <div class="image-upload-wrapper">
+              <input type="file" id="imageUpload" accept="image/*" />
+              <p class="image-hint">
+                Das Bild wird nur im Browser angezeigt und nicht hochgeladen.  
+                <strong>Die Fake-News-Erkennung basiert aktuell nur auf dem Text.</strong>
+              </p>
+              <div class="image-preview" id="imagePreviewContainer">
+                <span class="image-placeholder">Kein Bild ausgewählt</span>
+                <img id="imagePreview" alt="Screenshot Vorschau" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button id="analyzeButton" class="primary-button">
+          Artikel prüfen
+        </button>
+
+        <p class="disclaimer">
+          ⚠️ Dieses Tool ist <strong>kein echter Faktencheck</strong> und liefert nur
+          eine <strong>Näherung anhand typischer Fake-News-Muster</strong>.
+          Bitte immer mit gesundem Menschenverstand und weiteren Quellen prüfen.
+        </p>
+      </section>
+
+      <section class="result-panel card">
+        <h2>2. Ergebnis</h2>
+
+        <div id="noResultHint" class="no-result-hint">
+          Noch kein Text geprüft. Füge oben einen Text ein und klicke auf
+          <strong>„Artikel prüfen“</strong>.
+        </div>
+
+        <div id="resultContent" class="result-content hidden">
+          <div class="score-wrapper">
+            <div class="score-block">
+              <div class="score-label fake">Fake-Anteil</div>
+              <div class="score-value" id="fakePercent">0%</div>
+            </div>
+            <div class="score-block">
+              <div class="score-label real">Echt-Anteil</div>
+              <div class="score-value" id="realPercent">0%</div>
+            </div>
+          </div>
+
+          <div class="score-bar">
+            <div id="fakeBar" class="score-bar-segment fake"></div>
+            <div id="realBar" class="score-bar-segment real"></div>
+          </div>
+
+          <div class="confidence-hint" id="confidenceHint"></div>
+
+          <div class="flags-section">
+            <h3>Erkannte Hinweise / Auffälligkeiten</h3>
+            <ul id="flagsList" class="flags-list"></ul>
+          </div>
+
+          <div class="explanation-section">
+            <h3>Wie funktioniert das?</h3>
+            <p>
+              Der FakeDetector sucht nach typischen Mustern von Fake News:
+              reißerische Sprache, viele Ausrufezeichen, übertriebene Großschreibung,
+              bestimmte Schlagwörter („Skandal“, „Unglaublich“, „Was dir niemand sagt…“),
+              sowie Hinweise auf seriöse Sprache (Quellenangaben, nüchterner Stil, Zahlen, Daten).
+            </p>
+            <p>
+              Aus diesen Merkmalen berechnet er einen <strong>ungefähren Fake-Score</strong>.
+              Dieses Ergebnis ist <strong>keine objektive Wahrheit</strong>, sondern nur eine
+              <strong>Automatik zum Nachdenken</strong>.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>FakeNew Detektor (V1.1.0)</span>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
