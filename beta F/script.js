@@ -178,7 +178,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 6. Vage Quellenangaben (wirken unseriös)
     const vagueSourcePatterns = [
-  c
+    "man sagt",
+    "angeblich",
+    "gerüchten zufolge",
+    "ich habe gehört",
+    "es heißt",
+    "viele sagen"
     ];
     let vagueHits = 0;
     vagueSourcePatterns.forEach((kw) => {
