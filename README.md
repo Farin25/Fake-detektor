@@ -28,5 +28,6 @@ Beim berechen ist der Grundaufbau 50/50 und pro endektes Kreterium für Fake wir
 | "Es wurden Links / URLs gefunden – das kann auf Weiterführende Quellen hinweisen. | Links im Text |
 | Wenig bis keine Ausrufezeichen und kaum Großschreibung | Wenig bis keine Ausrufezeichen und kaum Großschreibung
 | Relativ langer Text | Relativ langer Text|
+| Kombinationen wie „?!“ endeckt| Kombinationen mit ? und ! also:"!?" oder:"?!" |
 
 
