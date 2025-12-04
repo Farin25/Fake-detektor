@@ -21,6 +21,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
+  min-width: 100%;
 }
 
 body {
@@ -206,8 +207,6 @@ textarea:focus {
   color: var(--text-muted);
 }
 
-/* Hinweise / Flags – untereinander */
-
 .flags-section {
   margin-bottom: 18px;
 }
@@ -250,7 +249,6 @@ textarea:focus {
   margin-right: 6px;
 }
 
-/* Erklärung */
 
 .explanation-section h3 {
   margin: 0 0 6px;
@@ -289,13 +287,27 @@ textarea:focus {
   box-shadow: 0 2px 15px rgba(0,0,0,0.3);
 }
 
+.source {
+  bottom: 12px;
+  right: 12px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-left: 1200px;
+}
+
+.source:hover {
+  text-decoration: underline;
+  color: rgb(255, 255, 255);
+
+}
 
 @keyframes scroll {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-20%);
+    transform: translateX(-10%);
   }
 }
 
@@ -305,7 +317,7 @@ textarea:focus {
   }
 
   .page-main {
-    padding: 0 12px 20px;
+    padding: 0 12px px;
   }
 
   textarea {
