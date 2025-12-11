@@ -2,60 +2,66 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>FakeDetector – Fake News Checker</title>
+  <title>FakeDetector</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="page-header">
-    <h1>The Fake detector</h1>
+    <h1>FakeDetector</h1>
     <p class="page-subtitle">
-      Eine einfache Analyse für die leichte einschätzung ob der Artikel echt ist oder nicht.<br><br>
-      <strong>Disclaimer:</strong> Der Fake detector ersetzt keinen gesunden Menschnverstand und auch keine gründliche Recherche</p>
+      Der FakDetecctor hilft dir dabei, potenzielle Fake News in Artikeln und Social-Media-Posts zu erkennen.
+      <br /><br />
+      <strong>Wichtig:</strong> Der FakeDetector ersetzt weder gründliche Recherche noch deinen eigenen gesunden
+      Menschenverstand.
+    </p>
   </header>
+
   <main class="page-main">
-    <!-- Die Eingabe  -->
+    <!-- Eingabe -->
     <section class="section">
       <h2>1. Text eingeben</h2>
 
       <label for="articleText" class="field-label">
-        Text des Artikels / Posts
+        Text des Artikels oder Posts:
       </label>
       <textarea
         id="articleText"
-        placeholder="Hier Artikel oder Social-Media-Post einfügen..."
+        placeholder="Hier Artikel oder Social-Media-Post einfügen…"
       ></textarea>
 
       <p class="helper-text">
-       <strong>Tipp:</strong>  Je mehr Text desso besser ist das Ergebniss der analyse.
+        <strong>Tipp:</strong>Deso mehr Text eingefüht wird deso Preziser ist das Ergebniss.
       </p>
 
       <button id="analyzeButton" class="primary-button">
-        Artikel prüfen
+        Prüfen
       </button>
 
       <p class="disclaimer">
-        <str>
-         <strong>Disclaimer:</strong>.
-        Diese Tool ist nur eine einfache Analyse und kann auch fehler machen. Dises Tool ersetzt keinen gesunden Menschnverstand und auch keine gründliche Recherche.
+        Dieses Tool liefert nur eine grobe Einschätzung und kann Fehler machen. Prüfe Inhalte immer kritisch und sorgfälltig.
       </p>
     </section>
 
-    <!-- Das Krasse vieleicht auch erschreckende ergebniss -->
-    <section class="section section-result">
-      <h2>2. Ergebnis</h2>
+    <!-- Ergebnis -->
+<section class="section section-result">
+  <h2>2. Ergebniss</h2>
 
-      <div id="noResultHint" class="no-result-hint">
-        Nichts zum Prüfen vorhanden. Errst den zu Prüffenden Text einfügen ( Zeitungsartikel oder Social-Media-Post ) dannach auf <strong>„Prüfen“</strong> Drücken oder klicken.
-      </div>
+  <div id="noResultHint" class="no-result-hint">
+  Noch nicht zu Prüfen, erst den Text oben einfügen und dann auf 
+    <strong>„Artikel prüfen“</strong>drücken.
+  </div>
 
-      <div id="resultContent" class="result-content hidden">
-        <!-- Die gesmatte zusammenfassung vom Ergebniss -->
+  <div id="resultContent" class="result-content hidden">
+    <div class="result-layout">
+
+      <div class="result-col result-col--analysis">
+
         <div class="summary-block">
           <p class="summary-line">
             Ergebnis:
             <span id="fakePercent" class="summary-fake">0%</span> Fake /
-            <span id="realPercent" class="summary-real">0%</span> Echt
+            <span id="realPercent" class="summary-real">0%</span> echt
           </p>
 
           <div class="score-bar">
@@ -66,48 +72,76 @@
           <p id="confidenceHint" class="confidence-hint"></p>
         </div>
 
-        <!-- Hinweise / Auffälligkeiten -->
+
         <div class="flags-section">
-          <h3>Ergebnise</h3>
+          <h3>Hinweise und Auffälligkeiten</h3>
           <ul id="flagsList" class="flags-list"></ul>
         </div>
 
-        <!-- Erklärung -->
+
         <div class="explanation-section">
-          <h3>Wie funktioniert der Fake detector?</h3>
+          <h3>Wie funktioniert der FakeDetector?</h3>
           <p>
-          Die Logik der Webseite ist ein Algorithmus der Den Eingegebenen Text nach auffäligkeiten Prüft zum Beispiel wird geprüft ob der Text auffäligkeiten aufzeigt wie zum Beispiel auffälige wörter wie: "Glauben" oder: "Schockieren / Schock". Außer dem wird der ganze Text auf Groß und klein schreibung geprüft, nur groß geschrieben Wörter sind auch sehr auffällig. Was auch auffälig ist sind viele Ausrufezeichen. Der Algorithmus prüft auch ob eine Qelle Angegeben ist oder nicht. Dann wird noch Geprüft ob zum Teilen Aufgerufen wird oder sich widersprechende Fakten im Text sind. Aber es werden auch auffälig keiten Geprüft die darauf hinweisen das der Text Echt und vertrauenswürdig ist wenn der geneteil der fall ist wie von den Anzeichen für Fake.
+            Der FakeDetector nutzt einfache Regeln (Heuristiken), um Auffälligkeiten im Text zu erkennen.
+            Dazu gehören zum Beispiel reißerische Schlagwörter, viele Ausrufezeichen,
+            komplett großgeschriebene Wörter, vage Quellenangaben oder starke Feindbildsprache.
           </p>
           <p>
-            Aus diesen Merkmalen werden Punkte für „Fake“ und „Echt“ berechnet.
-            Daraus entsteht eine prozentuale Einschätzung. Das Ergebnis ist
-            <strong>nur eine Einschätzung</strong> aber ersetzt keine
-            gründliche Recherche und auch auch keinen gesunden Menschnverstand.
+            Gleichzeitig achtet das Tool auch auf positive Hinweise wie Quellenangaben, Zahlen und Daten,
+            weiterführende Links oder eher nüchterne Formulierungen.
           </p>
-         </div>
-     </section>
+          <p>
+            Aus diesen Merkmalen werden Punkte für „Fake“ und „Echt“ berechnet. Daraus entsteht eine
+            prozentuale Einschätzung. Das Ergebnis ist <strong>keine Garantie</strong>, sondern nur eine
+            Orientierungshilfe.
+          </p>
+        </div>
+      </div>
+
+ 
+      <div class="result-col result-col--preview">
+        <h3>Analysierter Text</h3>
+        <p class="article-preview-hint">
+          Markierte Stellen zeigen mögliche Auffälligkeiten oder Hinweise (z. B. emotionale Sprache,
+          vage Quellen, außergewöhnliche Behauptungen).
+        </p>
+        <div id="articlePreview" class="article-preview"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    <section class="section section-tips">
+      <div class="carousel-wrapper">
+        <div class="carousel">
+          <div class="carousel-item">Fake News erkennt man oft daran, dass klare Quellen fehlen.</div>
+          <div class="carousel-item">Fake News spielen häufig mit starken Emotionen wie Angst oder Wut.</div>
+          <div class="carousel-item">Viele Tippfehler und seltsame Formulierungen können ein Warnsignal sein.</div>
+          <div class="carousel-item">„Teile das unbedingt weiter!“ kann ein Hinweis auf Manipulation sein.</div>
+          <div class="carousel-item">Seriöse Beiträge nennen oft überprüfbare Fakten und Studien.</div>
+
+          <!-- Duplikate für nahtloses Scrollen -->
+          <div class="carousel-item">Fake News erkennt man oft daran, dass klare Quellen fehlen.</div>
+          <div class="carousel-item">Fake News spielen häufig mit starken Emotionen wie Angst oder Wut.</div>
+          <div class="carousel-item">Viele Tippfehler und seltsame Formulierungen können ein Warnsignal sein.</div>
+          <div class="carousel-item">„Teile das unbedingt weiter!“ kann ein Hinweis auf Manipulation sein.</div>
+          <div class="carousel-item">Seriöse Beiträge nennen oft überprüfbare Fakten und Studien.</div>
+        </div>
+      </div>
+    </section>
   </main>
-       </div>
-          <div class="carousel-wrapper">
-          <div class="carousel">
-            <div class="carousel-item">Fake News erkennt man daran, dass Quellen fehlen.</div>
-            <div class="carousel-item">Fake News verbreiten oft extreme Emotionen.</div>
-            <div class="carousel-item">Fake News enthalten oft Tippfehler und seltsame Formulierungen.</div>
-            <div class="carousel-item">Fake News werden meist über soziale Medien stark geteilt.</div>
-            <div class="carousel-item">Fake News enthalten oft keine überprüfbaren Fakten.</div>
-            
 
-            <!-- Duplizieren für nahtloses Scrollen -->
-            <div class="carousel-item">Fake News erkennt man daran, dass Quellen fehlen.</div>
-            <div class="carousel-item">Fake News verbreiten oft extreme Emotionen.</div>
-            <div class="carousel-item">Fake News enthalten oft Tippfehler und seltsame Formulierungen.</div>
-            <div class="carousel-item">Fake News werden meist über soziale Medien stark geteilt.</div>
-            <div class="carousel-item">Fake News enthalten oft keine überprüfbaren Fakten.</div>
-          </div>
-       </div><br>
-      <a href="https://github.com/Farin25/FakeNews-detector" class="source">Source Code</a>
-
-  <!-- Wichtig LIAM!!! JS einbinden NICHT vergessen Liam!!!!!!! -->
-  <script src="script.js"></script>
+  <footer class="page-footer">
+    <a href="https://github.com/Farin25/FakeNews-detector"
+       class="source"
+       target="_blank"
+       rel="noopener noreferrer">
+      Source Code auf GitHub
+    </a>
+  </footer>
+ <!-- Wichtig LIAM!!! JS einbinden NICHT vergessen Liam!!!!!!! -->
+  <script type="module" src="main.js"></script>
 </body>
 </html>
