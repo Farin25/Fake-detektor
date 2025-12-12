@@ -1,43 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FakeDetector</title>
-      <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FakeDetector</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  
-    <div id="light-overlay"></div>
+  <div id="light-overlay"></div>
   <canvas id="stars"></canvas>
-  <h1 class="überschrift">FakeDetector</h1>
-  <h1 class="sing">by Liam & Farin</h1>
-    <div class="center">
-      <div class="menu">
-        <input type="checkbox" name="" id="menu" />
-        <div class="logo">
-          FakeDetector
-          <label for="menu"></label>
-        </div>
 
-        <div class="items">
-          <a href="" class="item">Home</a>
-          <a href="" class="item">About</a>
-          <a href="" class="item">Features</a>
-          <a href="" class="item">Profile</a>
-          <a href="" class="item">Logout</a>
-        </div>
-      </div>
+  <!-- Header / Menü -->
+  <div class="menu">
+    <input type="checkbox" id="menu">
+    <div class="logo">FakeDetector <label for="menu"></label></div>
+    <div class="items">
+      <a href="index.html" class="item">Home</a>
+      <a href="detector.html" class="item">Detector</a>
+      <a href="#" class="item">About</a>
     </div>
-    <br><br><br><br>
-<h2 class="text">
-Fake News sind falsche oder irreführende Informationen, die oft im Internet verbreitet werden.<br>
-Sie können Menschen täuschen, Panik erzeugen oder Meinungen manipulieren.<br><br>
-Mit dieser Seite kannst du Texte überprüfen und herausfinden, ob sie seriös sind.<br>
-Die KI analysiert den Inhalt und gibt dir Hinweise, wie glaubwürdig die Informationen sind.<br>
-So kannst du leichter entscheiden, welche Nachrichten vertrauenswürdig sind und welche nicht.<br><br>
-Bleib kritisch und überprüfe immer die Quellen, bevor du etwas teilst!
-</h2><br><br>
-</body>
+  </div>
 
+  <!-- Hauptinhalt -->
+  <h1 class="überschrift">FakeDetector</h1><br>
+  <h1 class="sing">by Liam &amp; Farin</h1>
+
+  <div class="text">
+    Fake News sind falsche oder irreführende Informationen, die oft im Internet verbreitet werden.<br>
+    Sie können Menschen täuschen, Panik erzeugen oder Meinungen manipulieren.<br><br>
+    Mit unserem FakeDetector kannst du jeden Text in Sekunden prüfen – kostenlos und anonym.<br><br>
+    Bleib kritisch und überprüfe immer die Quellen!
+  </div>
+
+  <button class="btn-detector" onclick="window.location.href='/beta F/index.html'">
+    <i class="fas fa-search"></i> Jetzt Fake News prüfen
+  </button>
+
+  <div class="carousel-wrapper">
+    <div class="carousel">
+      <div class="carousel-item">Tipp: Überprüfe immer mehrere Quellen!</div>
+      <div class="carousel-item">Sensationsüberschriften sind oft Clickbait</div>
+      <div class="carousel-item">Achte auf Rechtschreibung &amp; Grammatik</div>
+      <div class="carousel-item">Bilder können mit KI gefälscht sein</div>
+      <div class="carousel-item">Vertraue seriösen Nachrichtenagenturen</div>
+      <div class="carousel-item">Tipp: Überprüfe immer mehrere Quellen!</div>
+    </div>
+  </div>
+
+  <!-- Sternenhimmel Script -->
+  <script>
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    canvas.width = innerWidth; canvas.height = innerHeight;
+    let stars = [];
+    for(let i=0;i<300;i++) stars.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, size:Math.random()*2, speed:Math.random()*0.5+0.1});
+    function draw(){ 
+      ctx.clearRect(0,0,canvas.width,canvas.height); 
+      ctx.fillStyle='white';
+      stars.forEach(s=>{ 
+        ctx.globalAlpha=Math.random()>0.5?1:0.6; 
+        ctx.beginPath(); 
+        ctx.arc(s.x,s.y,s.size,0,Math.PI*2); 
+        ctx.fill();
+        s.x-=s.speed; 
+        if(s.x<0) s.x=canvas.width; 
+      }); 
+      requestAnimationFrame(draw); 
+    }
+    draw();
+    window.addEventListener('resize',()=>{ canvas.width=innerWidth; canvas.height=innerHeight; });
+  </script>
+  <body>
+  <div id="light-overlay"></div>
+  <canvas id="stars"></canvas>
+
+ 
+</body>
 </html>
