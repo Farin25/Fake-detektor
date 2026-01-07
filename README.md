@@ -49,5 +49,18 @@ Beim berechen ist der Grundaufbau 50/50 und pro endektes Kreterium für Fake wir
 
 
 #### Copyright (C) 2026 of Liam and Farin 
+
+## Star History
+
+<a href="https://www.star-history.com/#Farin25/FakeNews-detector&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Farin25/FakeNews-detector&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Farin25/FakeNews-detector&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Farin25/FakeNews-detector&type=date&legend=top-left" />
+ </picture>
+</a>
+
+
+#### Copyright (C) 2025 of Liam and Farin 
  - Distributed under the terms of the GNU General Public License v3.0
 
