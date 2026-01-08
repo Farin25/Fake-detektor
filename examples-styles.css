@@ -154,3 +154,11 @@
     font-size: 0.9rem;
   }
 }
+
+.fl {
+  color: #00ccff;
+  text-decoration: none;
+  font-weight: normal;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0.5rem 0;
+}

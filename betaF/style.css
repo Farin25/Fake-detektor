@@ -617,3 +617,10 @@ mark.hl-extra {
   font-size: 0.75rem;
   margin-left: auto;
 }
+
+.fl {
+  text-decoration: none;
+  font-weight: normal;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0.5rem 0;
+}
