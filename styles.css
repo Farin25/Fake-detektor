@@ -170,7 +170,7 @@ body {
 }
 
 /* Sections */
-.intro-section, .tips-section, .cta-section {
+.intro-section, .tips-section, .cta-section, .podcast { 
   margin-bottom: 3rem;
   background: rgba(10, 10, 20, 0.7);
   backdrop-filter: blur(10px);
@@ -334,3 +334,34 @@ body {
   font-weight: normal;
   color: rgba(255, 255, 255, 0.7);
 }
+
+.podcst {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: rgba(10, 10, 20, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 153, 255, 0.15);
+}
+
+.podcast h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #00ccff;
+  text-align: center;
+}
+
+.player {
+  width: 100%;
+  outline: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 153, 255, 0.2);
+}
+
+.podcast p {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
