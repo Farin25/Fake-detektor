@@ -73,6 +73,13 @@
   Hier gibt es noch nichts zu prüfen – füge oben Text ein und drücke Prüfen.
     <strong>„Artikel prüfen“</strong>drücken.
   </div>
+<div id="loadingBox" class="loading hidden" aria-live="polite">
+  <div id="loadingText">Text wird analysiert…</div>
+  <div class="progress">
+    <div id="progressBar" class="progress-bar" style="width:0%"></div>
+  </div>
+  <div id="progressPct" class="progress-pct">0%</div>
+</div>
 
   <div id="resultContent" class="result-content hidden">
     <div class="result-layout">
@@ -93,6 +100,12 @@
 
           <p id="confidenceHint" class="confidence-hint"></p>
         </div>
+     <div id="aiBox" class="hidden">
+       <h3>KI-Einschätzung</h3>
+       <p id="aiSummary"></p>
+       <ul id="aiReasons"></ul>
+     </div>
+
 
 
         <div class="flags-section">
@@ -116,6 +129,10 @@
             Aus diesen Merkmalen werden Punkte für „Fake“ und „Echt“ berechnet. Daraus entsteht eine
             prozentuale Einschätzung. Das Ergebnis ist <strong>keine Garantie</strong>, sondern nur eine
             Orientierungshilfe.
+          </p>
+            <p>
+            Seit neusten nutzt der FakeDetector auch eine <strong>KI-gestützte Analyse</strong>, um den Text auf mögliche
+            Manipulationstechniken und typische Merkmale von Falschinformationen zu überprüfen. Das dafür genutzte KI-Modell wurde speziell für die Erkennung von Fake News trainiert. Verwendet wird das Modell: <strong><a href="https://huggingface.co/mrm8488/roberta-base-fake-news-detection" target="_blank" class="link">roberta-base-fake-news-detection</a> von mrm8488 auf HuggingFace</strong>.
           </p>
         </div>
       </div>

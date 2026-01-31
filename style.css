@@ -792,3 +792,24 @@ mark.hl-extra {
   font-weight: normal;
   color: rgba(255, 255, 255, 0.7);
 }
+
+.loading { margin-top: 12px; }
+.progress { height: 10px; border-radius: 999px; background: rgba(255,255,255,.08); overflow: hidden; }
+.progress-bar { height: 100%; border-radius: 999px; background: rgba(0,180,255,.9); transition: width .15s linear; }
+.progress-pct { margin-top: 6px; font-size: 12px; opacity: .8; }
+.hidden { display: none; }
+
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.link {
+  color: var(--accent);
+
+}
+
+.link:hover {
+  text-decoration: underline;
+}

@@ -24,3 +24,6 @@ build/
 # ===== Proxmox / Server =====
 pm2.log
 logs/
+
+# ===== Secrets =====#
+backend/src/token.txt
