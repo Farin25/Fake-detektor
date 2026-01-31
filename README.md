@@ -1,15 +1,6 @@
-# Fake-detektor - A website for detecting fake news
+# Fake-detektor - Backend
 
-## Wie Funktioniert der Fake detector?
 
-Die Logik der Webseite ist ein Algorithmus der Den Eingegebenen Text nach auffäligkeiten Prüft zum Beispiel wird geprüft ob der Text auffäligkeiten aufzeigt wie zum Beispiel auffälige wörter wie: "Glauben" oder: "Schockieren / Schock". Außer dem wird der ganze Text auf Groß und klein schreibung geprüft, nur groß geschrieben Wörter sind auch sehr auffällig. Was auch auffälig ist sind viele Ausrufezeichen. Der Algorithmus prüft auch ob eine Qelle Angegeben ist oder nicht. Dann wird noch Geprüft ob zum Teilen Aufgerufen wird oder sich widersprechende Fakten im Text sind. Aber es werden auch auffälig keiten Geprüft die darauf hinweisen das der Text Echt und vertrauenswürdig ist wenn der geneteil der fall ist wie von den Anzeichen für Fake.
-<br>
-<br>
-<br>
-Beim berechen ist der Grundaufbau 50/50 und pro endektes Kreterium für Fake wird Fake halt erhöt und bei Echt wird der Real-Score erhöth. Was wie ins Gewicht fällt ist unten in der Tabelle zu sehen.
-<br><br>
-
-### Folgende Sachen Werden Geprüft:
 
 
 ### Changelog
@@ -75,6 +66,6 @@ Beim berechen ist der Grundaufbau 50/50 und pro endektes Kreterium für Fake wir
 </a>
 
 
-#### Copyright (C) 2025 of Liam and Farin 
+#### Copyright (C) 2026 of Liam and Farin 
  - Distributed under the terms of the MIT License.
 
