@@ -36,6 +36,15 @@ Beim berechen ist der Grundaufbau 50/50 und pro endektes Kreterium für Fake wir
 - CSS Zusammengefügt.
 - Beispiel Seite entfernt.
 
+## 5.2.25     
+**5.02.2026**  
+- Analyse erweitert.
+- js umstrukturiert. 
+- Versionsnummer zu Datum geändert.
+- Untersuchung ob der Text KI generiert ist mit hilfe von Unicodes. Inspiriert von [https://github.com/Developer-Akademie-YouTube/AI-Text-detector](https://github.com/Developer-Akademie-YouTube/AI-Text-detector).
+- Kleine CSS änderungen.
+
+
 ### Aktuelle Entwicklungen 
 
 - Beispiele auf zu Detectorseite.

@@ -89,4 +89,20 @@ export function renderAnalysisResult(analysis, refs) {
   if (articlePreview) {
     articlePreview.innerHTML = analysis.highlightedHtml || "";
   }
+
+   if (analysis.aiUnicode) {
+    const { isLikelyAi, count } = analysis.aiUnicode;
+
+    const li = document.createElement("li");
+    li.className = isLikelyAi ? "fake-flag" : "real-flag";
+    li.innerHTML = `
+      <span class="flag-pill-label">AI-Detektor</span>
+      <span>
+        ${isLikelyAi
+          ? `Verdächtige Unicode-Zeichen gefunden (${count})`
+          : "Keine typischen AI-Unicode-Merkmale gefunden"}
+      </span>`;
+    flagsList.appendChild(li);
+  }
 }
+

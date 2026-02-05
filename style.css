@@ -792,3 +792,22 @@ mark.hl-extra {
   font-weight: normal;
   color: rgba(255, 255, 255, 0.7);
 }
+
+.howitworks {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: rgba(10, 10, 20, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 153, 255, 0.15);
+}
+
+.link {
+  color: var(--text-strong);
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--text-strong);
+  text-decoration: underline
+}
